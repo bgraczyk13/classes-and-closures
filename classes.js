@@ -31,6 +31,20 @@
 
 //Code Here
 
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name
+    this.last_name = last_name
+    this.email = email
+    this.age = age
+  }
+}
+
+Employee.prototype.makeWidget = function() {
+  return `${this.first_name} ${this.last_name} Widget`
+}
+
+
 
 ////////// PROBLEM 2 //////////
 
@@ -48,6 +62,13 @@
 */
 
 //Code Here
+
+class Manager extends Employee {
+  constructor(first_name, last_name, email, age) {
+    super(first_name, last_name, email, age)
+    this.reports = [];
+  }
+}
 
 
 ////////// PROBLEM 3 //////////
@@ -72,6 +93,14 @@
 */
 
 //Code Here
+
+class ProgressiveManager extends Manager{
+  constructor(first_name, last_name, email, age, reports) {
+    super(first_name, last_name, email, age, reports)
+    this.title = 'Not a manager'
+    this.bonus = 0
+  }
+}
 
 
 
@@ -100,4 +129,11 @@
 
 //Code Here
 
+class Machine {
+  constructor(widgets_made_count, wear_and_tear_count, needs_reeboot) {
+    this.widgets_made_count = 0
+    this.wear_and_tear_count = 0
+    this.needs_reeboot = false
+  }
+}
 

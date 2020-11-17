@@ -24,13 +24,13 @@ function outer() {
   
 // Code Here
 
-
+let inner = outer();
 
 //Once you do that, invoke inner.
 
 //Code Here
 
-
+inner();
 
 ////////// PROBLEM 2 //////////
 
@@ -52,8 +52,9 @@ function callFriend(name) {
 */
 
 //Code Here
-
-
+let name = "Jake";
+let number = 435-555-9248;
+let callJake = callFriend(name);
 
 ////////// PROBLEM 3 //////////
 
@@ -63,14 +64,22 @@ function callFriend(name) {
 
 //Code Here
 
+var makeCounter = function(num){
+  
+    return function(){
+      num ++
+      return num;
+    };
+  }
+
 
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count();
+  count(); 
+  count(); 
+  count(); 
 
 
 
@@ -89,9 +98,16 @@ function counterFactory(value) {
   // Code here.
 
   return {
-
-  };
+    inc: function (){
+      return value += 1;
+    },
+    
+    dec: function() {
+      return value -= 1;
+    }
+  }
 }
+
 
 counter = counterFactory(10);
 // counter.inc() // 11
@@ -109,18 +125,22 @@ counter = counterFactory(10);
   (Hint: don't forget to have a space between the firstname and lastname and a period at the end of the sentence.)
 */
 
-function motivation( firstname, lastname ) {
+function motivation(firstname, lastname) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
+  
+  function message(){
+    return `${welcomeText + firstname} ${lastname}.`;
+  }
 
   //Uncommment this to return the value of your message function
-  //return message;
-}
+    return message;}
+
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
 
-
+console.log(motivation('Billy', 'Bob'));
 
 ////////// PROBLEM 6 //////////
 
@@ -143,11 +163,14 @@ var module = (function() {
   // Anything that is being returned is made public and can be invoked from
   // outside our lexical scope
   return {
-    // Code here.
+    publicMethod: function() {
+      return privateMethod();
+    }
   };
 })();
+    // Code here.
 
-
+module.publicMethod();
 
 ////////// PROBLEM 7 //////////
 
@@ -193,4 +216,7 @@ function timeOutCounter() {
     }, i * 1000);
   }
 }
+
 timeOutCounter();
+
+
