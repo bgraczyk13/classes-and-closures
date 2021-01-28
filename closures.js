@@ -64,13 +64,14 @@ let callJake = callFriend(name);
 
 //Code Here
 
-var makeCounter = function(num){
-  
-    return function(){
-      num ++
-      return num;
-    };
+function makeCounter () {
+  let counter = 0; 
+
+  return function () {
+    counter ++;
+    return counter;
   }
+}
 
 
 
@@ -131,16 +132,17 @@ function motivation(firstname, lastname) {
   // code message function here.
   
   function message(){
-    return `${welcomeText + firstname} ${lastname}.`;
+    return `${welcomeText} ${firstname} ${lastname}.`;
   }
 
   //Uncommment this to return the value of your message function
-    return message;}
+    return message;
+}
 
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
 
-console.log(motivation('Billy', 'Bob'));
+
 
 ////////// PROBLEM 6 //////////
 
@@ -186,8 +188,17 @@ function secretNumber() {
 
   return {
     // Code here
+    addToSecret: function (num) {
+      secret += num;
+      return secret;
+    },
+    takeAwayFromSecret: function (num) {
+      secret -= num;
+      return secret;
+    }
   };
 }
+
 
 
 
@@ -211,8 +222,9 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
+    let counter = i;
     setTimeout(function() {
-      console.log(i);
+      console.log(counter);
     }, i * 1000);
   }
 }

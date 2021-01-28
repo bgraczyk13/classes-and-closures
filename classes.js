@@ -68,6 +68,14 @@ class Manager extends Employee {
     super(first_name, last_name, email, age)
     this.reports = [];
   }
+
+  hire (employee) {
+    this.reports.push(employee);
+  }
+
+  fire (index) {
+    this.reports.splice(index, 1)
+  }
 }
 
 
@@ -95,10 +103,35 @@ class Manager extends Employee {
 //Code Here
 
 class ProgressiveManager extends Manager{
-  constructor(first_name, last_name, email, age, reports) {
-    super(first_name, last_name, email, age, reports)
-    this.title = 'Not a manager'
-    this.bonus = 0
+  constructor(first_name, last_name, email, age) {
+    super(first_name, last_name, email, age)
+    this.title = 'Not a manager';
+    this.bonus = 0;
+  }
+
+  updateTitle () {
+    if (this.reports.length >= 1 && this.reports <=3) {
+      this.title = "Barely Manager";
+    } else if (this.reports.length >= 4 && this.reports.length <= 10) {
+      this.title = "Mostly Manager";
+    } else if (this.reports.length >= 11 && this.reports.length <=50) {
+      this.title = "Manager";
+    } else if (this.reports.length >= 51 && this.reports.length <=100) {
+      this.title = "Manager Plus";
+    } else if (this.reports.length >=101) {
+      this.title = "Bestest Manager";
+    }
+  }
+
+  hire () {
+    super.hire();
+    this.updateTitle();
+  }
+
+  fire (index) {
+    super.fire(index);
+    this.bonus += 100;
+    this.updateTitle();
   }
 }
 
@@ -129,11 +162,28 @@ class ProgressiveManager extends Manager{
 
 //Code Here
 
-class Machine {
-  constructor(widgets_made_count, wear_and_tear_count, needs_reeboot) {
-    this.widgets_made_count = 0
-    this.wear_and_tear_count = 0
-    this.needs_reeboot = false
-  }
-}
+class Machine{
+  constructor() {
+    this.widgets_made_count=0
+    this.wear_and_tear_count=0
+    this.needs_reboot=false
+   }
+   makeWidgets(x){
+    this.widgets_made_count+=x
+    this.wear_and_tear_count=Math.floor(this.widgets_made_count/50)
+   }
+   fixMachine(){
+     this.needs_reboot=true
+   }
+    
+    reboot(){
+      let that=this
+     return function (){
+       that.wear_and_tear_count-=10
+       that.needs_reboot=false
+       return that.widgets_made_count, that.needs_reboot
+     }
+     
+   }
 
+}
